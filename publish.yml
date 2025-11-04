@@ -1,0 +1,28 @@
+name: Publish from Notion
+on:
+  schedule:
+    - cron: "0 6,12,18 * * *"  # 09:00, 15:00, 21:00 Asia/Nicosia ≈ UTC+3
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests python-slugify jinja2
+      - name: Pull drafts from Notion and render HTML
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
+          GA4_MEASUREMENT_ID: ${{ secrets.GA4_MEASUREMENT_ID || '' }}
+        run: python scripts/publish.py
+      - name: Commit & push
+        run: |
+          git config user.name "lumen-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A
+          git commit -m "Auto-publish from Notion" || echo "No changes"
+          git push
