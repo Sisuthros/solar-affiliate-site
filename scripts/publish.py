@@ -1,8 +1,8 @@
 import os
 import json
+import base64
 import requests
 from slugify import slugify
-from jinja2 import Template
 
 # Constants for Notion API
 NOTION_QUERY_URL = "https://api.notion.com/v1/databases/{db}/query"
@@ -11,42 +11,16 @@ NOTION_PAGE_URL = "https://api.notion.com/v1/pages/{id}"
 # Load environment variables
 NOTION_API_KEY = os.environ.get("NOTION_API_KEY")
 NOTION_DB_ID = os.environ.get("NOTION_DB_ID")
-SITE_BASE_URL = os.environ.get("SITE_BASE_URL", "")
-GA4_ID = os.environ.get("GA4_MEASUREMENT_ID", "")
+WP_BASE_URL = os.environ.get("WP_BASE_URL")
+WP_USER = os.environ.get("WP_USER")
+WP_APP_PASSWORD = os.environ.get("WP_APP_PASSWORD")
 
 # Setup headers for Notion API requests
-HEADERS = {
+NOTION_HEADERS = {
     "Authorization": f"Bearer {NOTION_API_KEY}",
     "Notion-Version": "2022-06-28",
     "Content-Type": "application/json",
 }
-
-# HTML template for rendering posts
-HTML_TEMPLATE = Template("""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>{{ title }}</title>
-    <meta name="description" content="{{ meta }}"/>
-    <link rel="canonical" href="{{ canonical }}"/>
-    <meta property="og:title" content="{{ title }}"/>
-    <meta property="og:description" content="{{ meta }}"/>
-    {% if ga4 %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga4 }}"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ ga4 }}');
-    </script>
-    {% endif %}
-</head>
-<body>
-<div class="disclosure"><strong>Affiliate note:</strong> We may earn on links. It never changes your price.</div>
-<h1>{{ title }}</h1>
-{{ content | safe }}
-</body>
-</html>""")
 
 
 def fetch_ready_pages(db_id: str):
@@ -60,7 +34,7 @@ def fetch_ready_pages(db_id: str):
     }
     response = requests.post(
         NOTION_QUERY_URL.format(db=db_id),
-        headers=HEADERS,
+        headers=NOTION_HEADERS,
         data=json.dumps(payload),
     )
     response.raise_for_status()
@@ -76,31 +50,37 @@ def extract_text(prop):
     return ""
 
 
-def render_page(page):
-    """Render a Notion page row to HTML file."""
-    props = page["properties"]
-    title = extract_text(props["Title"])
-    slug_raw = extract_text(props.get("Slug", {"type": "rich_text", "rich_text": []}))
-    slug = slugify(slug_raw or title)[:80]
-    meta = extract_text(props.get("Outline", {"type": "rich_text", "rich_text": []}))[:155]
-    content = extract_text(props.get("Notes", {"type": "rich_text", "rich_text": []}))
-    canonical = f"{SITE_BASE_URL}/{slug}.html" if SITE_BASE_URL else ""
-    html = HTML_TEMPLATE.render(
-        title=title,
-        meta=meta,
-        content=content,
-        canonical=canonical,
-        ga4=GA4_ID,
-    )
-    file_path = f"{slug}.html"
-    with open(file_path, "w", encoding="utf-8") as f:
-        f.write(html)
-    return page["id"], slug
+def post_to_wordpress(title: str, content: str, slug: str, excerpt: str):
+    """Post content to WordPress via REST API and return the permalink."""
+    if not all([WP_BASE_URL, WP_USER, WP_APP_PASSWORD]):
+        raise ValueError("WordPress credentials not configured")
+
+    credentials = f"{WP_USER}:{WP_APP_PASSWORD}"
+    token = base64.b64encode(credentials.encode()).decode()
+
+    wp_headers = {
+        "Authorization": f"Basic {token}",
+        "Content-Type": "application/json",
+    }
+
+    payload = {
+        "title": title,
+        "content": content,
+        "slug": slug,
+        "excerpt": excerpt,
+        "status": "publish",
+    }
+
+    wp_url = f"{WP_BASE_URL.rstrip('/')}/wp-json/wp/v2/posts"
+    response = requests.post(wp_url, headers=wp_headers, data=json.dumps(payload))
+    response.raise_for_status()
+
+    result = response.json()
+    return result.get("link", "")
 
 
-def mark_published(page_id: str, slug: str):
+def mark_published(page_id: str, publish_url: str):
     """Update Notion page status to 'Published' and set the publish URL."""
-    publish_url = f"{SITE_BASE_URL}/{slug}.html" if SITE_BASE_URL else ""
     payload = {
         "properties": {
             "Status": {"select": {"name": "Published"}},
@@ -108,40 +88,63 @@ def mark_published(page_id: str, slug: str):
         }
     }
     response = requests.patch(
-        NOTION_PAGE_URL.format(id=page_id), headers=HEADERS, data=json.dumps(payload)
+        NOTION_PAGE_URL.format(id=page_id),
+        headers=NOTION_HEADERS,
+        data=json.dumps(payload)
     )
     response.raise_for_status()
 
 
-def write_sitemap_and_robots():
-    """Generate sitemap.xml and robots.txt based on the current HTML files."""
-    if not SITE_BASE_URL:
-        return
-    html_files = [f for f in os.listdir('.') if f.endswith('.html')]
-    with open('sitemap.xml', 'w', encoding='utf-8') as sm:
-        sm.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        sm.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-        for html_file in html_files:
-            sm.write(f'  <url><loc>{SITE_BASE_URL}/{html_file}</loc></url>\n')
-        sm.write('</urlset>')
-    with open('robots.txt', 'w', encoding='utf-8') as rb:
-        rb.write('User-agent: *\n')
-        rb.write('Allow: /\n')
-        rb.write(f'Sitemap: {SITE_BASE_URL}/sitemap.xml\n')
-
-
 def main():
     if not NOTION_API_KEY or not NOTION_DB_ID:
-        print("Notion API key or database ID not set.")
+        print("Error: Notion API key or database ID not set.")
         return
+
+    if not all([WP_BASE_URL, WP_USER, WP_APP_PASSWORD]):
+        print("Error: WordPress credentials not configured.")
+        return
+
     pages = fetch_ready_pages(NOTION_DB_ID)
     if not pages:
         print("No pages in Ready status.")
+        return
+
+    published_count = 0
+    failed_count = 0
+
     for page in pages:
-        page_id, slug = render_page(page)
-        mark_published(page_id, slug)
-    write_sitemap_and_robots()
-    print(f"Published {len(pages)} page(s).")
+        try:
+            props = page["properties"]
+            page_id = page["id"]
+
+            title = extract_text(props["Title"])
+            slug_raw = extract_text(props.get("Slug", {"type": "rich_text", "rich_text": []}))
+            slug = slugify(slug_raw or title)[:80]
+            excerpt = extract_text(props.get("Outline", {"type": "rich_text", "rich_text": []}))[:155]
+            content = extract_text(props.get("Notes", {"type": "rich_text", "rich_text": []}))
+
+            if not title or not content:
+                print(f"Skipping page {page_id}: Missing title or content")
+                failed_count += 1
+                continue
+
+            print(f"Publishing: {title}")
+            permalink = post_to_wordpress(title, content, slug, excerpt)
+
+            if permalink:
+                mark_published(page_id, permalink)
+                print(f"  ✓ Published: {permalink}")
+                published_count += 1
+            else:
+                print(f"  ✗ Failed: No permalink returned")
+                failed_count += 1
+
+        except Exception as e:
+            print(f"  ✗ Error publishing page {page.get('id', 'unknown')}: {str(e)}")
+            failed_count += 1
+            continue
+
+    print(f"\nSummary: {published_count} published, {failed_count} failed")
 
 
 if __name__ == "__main__":
