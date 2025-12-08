@@ -23,8 +23,21 @@
 <script>
 document.getElementById('roiForm').addEventListener('submit', function(e){
   e.preventDefault();
-  const bill = +bill.value, price = +price.value, yieldKWh = +yield.value;
-  const selfP = (+self.value)/100, fit = +fit.value, cost = +cost.value;
+  const billEl = document.getElementById('bill');
+  const priceEl = document.getElementById('price');
+  const yieldEl = document.getElementById('yield');
+  const selfEl = document.getElementById('self');
+  const fitEl = document.getElementById('fit');
+  const costEl = document.getElementById('cost');
+  const roiOut = document.getElementById('roiOut');
+
+  const bill = +billEl.value;
+  const price = +priceEl.value;
+  const yieldKWh = +yieldEl.value;
+  const selfP = (+selfEl.value)/100;
+  const fit = +fitEl.value;
+  const cost = +costEl.value;
+
   const yearlySpend = bill*12;
   const selfUseKWh = yieldKWh * selfP;
   const exportKWh = yieldKWh - selfUseKWh;
@@ -48,6 +61,6 @@ document.getElementById('roiForm').addEventListener('submit', function(e){
   <li>Compare tariffs and incentives; include VAT rules.</li>
   <li>Stress-test with ±20% yield/price scenarios.</li>
 </ol>
-<p>Next: pick a starter kit to learn by doing — see our <a href="/starter-kits-2025">Starter Kits Under €500</a>.</p>
+<p>Next: pick a starter kit to learn by doing — see our <a href="home_solar_starter_kits_under_500_2025.html">Starter Kits Under €500</a>.</p>
 </body>
 </html>
