@@ -1,0 +1,386 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SolarCalculator from '../components/SolarCalculator.jsx';
+---
+
+<Layout title="SolarSavings - Stop Renting Your Electricity. Own It.">
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-gray-900/60 z-10"></div>
+      <img
+        src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80"
+        alt="Modern home with solar panels"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-solar-500/20 border border-solar-500/30 rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-solar-400 rounded-full animate-pulse"></span>
+          <span class="text-solar-300 text-sm font-medium">30% Federal Tax Credit Available</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          Stop Renting Your Electricity.
+          <span class="text-gradient bg-gradient-to-r from-solar-400 to-sky-400 bg-clip-text text-transparent">
+            Own It.
+          </span>
+        </h1>
+
+        <p class="text-xl text-gray-300 mb-8 max-w-2xl">
+          Join 500,000+ homeowners who slashed their energy bills by up to 90%.
+          Get your personalized savings estimate in 30 seconds.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+          <a href="#calculator" class="btn-primary text-lg px-8 py-4">
+            Calculate My Savings
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="#how-it-works" class="btn-secondary bg-white/10 border-white/30 text-white hover:bg-white/20">
+            How It Works
+          </a>
+        </div>
+
+        <!-- Trust Stats -->
+        <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/10">
+          <div>
+            <div class="text-3xl font-bold text-white">500K+</div>
+            <div class="text-gray-400 text-sm">Homeowners Helped</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">$1.2B</div>
+            <div class="text-gray-400 text-sm">Total Savings</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-white">4.9/5</div>
+            <div class="text-gray-400 text-sm">Customer Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+      <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Trust Signals -->
+  <section class="py-12 bg-gray-50 border-y border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div class="flex items-center gap-2 text-gray-400">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+          <span class="font-semibold">Verified Installers</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-400">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+          </svg>
+          <span class="font-semibold">Licensed & Insured</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-400">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <span class="font-semibold">25-Year Warranty</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-400">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+          </svg>
+          <span class="font-semibold">$0 Down Options</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section id="calculator" class="py-20 bg-mesh">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="section-title mb-4">
+          Calculate Your <span class="text-gradient">Solar Savings</span>
+        </h2>
+        <p class="section-subtitle mx-auto">
+          Answer 2 quick questions and see how much you could save with solar power.
+        </p>
+      </div>
+
+      <div class="card p-8 md:p-12 max-w-2xl mx-auto">
+        <SolarCalculator client:load />
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title mb-4">How It Works</h2>
+        <p class="section-subtitle mx-auto">
+          Going solar has never been easier. We handle everything from start to finish.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-solar-500 to-solar-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold text-white">1</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Calculate Savings</h3>
+          <p class="text-gray-600">
+            Enter your monthly bill and zip code. Our calculator shows your personalized savings estimate instantly.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-sky-500 to-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold text-white">2</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Get Expert Quotes</h3>
+          <p class="text-gray-600">
+            We match you with up to 3 verified local installers. Compare quotes and choose the best option.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-gradient-to-br from-solar-500 to-sky-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold text-white">3</span>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Start Saving</h3>
+          <p class="text-gray-600">
+            Your installer handles permits, installation, and utility connection. Start generating clean energy!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Why 500,000+ Homeowners Chose Solar
+          </h2>
+          <p class="text-gray-300 text-lg mb-8">
+            Solar isn't just good for the planet — it's great for your wallet. Here's what you gain:
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-solar-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-solar-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-1">Slash Bills by 70-90%</h3>
+                <p class="text-gray-400">Average homeowner saves $1,500+ per year on electricity.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-1">Increase Home Value</h3>
+                <p class="text-gray-400">Homes with solar sell for 4.1% more on average.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-solar-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-solar-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-1">30% Federal Tax Credit</h3>
+                <p class="text-gray-400">The ITC covers 30% of your system cost through 2032.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-sky-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-1">Clean Energy Future</h3>
+                <p class="text-gray-400">Offset 100+ tons of CO2 over your system's lifetime.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="bg-white/5 backdrop-blur rounded-3xl p-8 border border-white/10">
+          <div class="text-center mb-8">
+            <p class="text-gray-400 mb-2">Average Homeowner Savings</p>
+            <div class="text-5xl font-bold text-solar-400">$42,000</div>
+            <p class="text-gray-400">over 25 years</p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-gray-300">Annual Savings</span>
+              <span class="font-semibold">$1,680/yr</span>
+            </div>
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-gray-300">Avg. Payback Period</span>
+              <span class="font-semibold">6-8 years</span>
+            </div>
+            <div class="flex justify-between items-center py-3 border-b border-white/10">
+              <span class="text-gray-300">System Warranty</span>
+              <span class="font-semibold">25 years</span>
+            </div>
+            <div class="flex justify-between items-center py-3">
+              <span class="text-gray-300">Home Value Increase</span>
+              <span class="font-semibold text-solar-400">+4.1%</span>
+            </div>
+          </div>
+
+          <a href="#calculator" class="btn-primary w-full mt-8">
+            Get Your Free Estimate
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="section-title mb-4">What Homeowners Say</h2>
+        <p class="section-subtitle mx-auto">
+          Join thousands of happy customers who made the switch to solar.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="card p-8">
+          <div class="flex gap-1 mb-4">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <p class="text-gray-600 mb-6">
+            "Our electric bill went from $280/month to $12. The installer handled everything — permits, installation, even the utility paperwork. Best home investment we've made."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-solar-100 rounded-full flex items-center justify-center">
+              <span class="text-solar-600 font-semibold">MJ</span>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">Michael J.</p>
+              <p class="text-gray-500 text-sm">Phoenix, AZ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="card p-8">
+          <div class="flex gap-1 mb-4">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <p class="text-gray-600 mb-6">
+            "I was skeptical about the savings estimates, but they were actually conservative. We're saving more than predicted. The $0 down financing made it a no-brainer."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center">
+              <span class="text-sky-600 font-semibold">SK</span>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">Sarah K.</p>
+              <p class="text-gray-500 text-sm">Austin, TX</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="card p-8">
+          <div class="flex gap-1 mb-4">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <p class="text-gray-600 mb-6">
+            "The tax credit alone covered 30% of the cost. Combined with state incentives, we're looking at a 5-year payback. After that, it's basically free electricity."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-solar-100 rounded-full flex items-center justify-center">
+              <span class="text-solar-600 font-semibold">DT</span>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">David T.</p>
+              <p class="text-gray-500 text-sm">Denver, CO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 bg-gradient-to-r from-solar-600 to-sky-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Ready to Take Control of Your Energy?
+      </h2>
+      <p class="text-xl text-solar-100 mb-8 max-w-2xl mx-auto">
+        Join the solar revolution. Get your free savings estimate and start your journey to energy independence.
+      </p>
+      <a href="#calculator" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-solar-600 bg-white rounded-xl shadow-xl hover:shadow-2xl transform transition-all duration-200 hover:scale-105">
+        Get My Free Estimate
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <p class="text-solar-100 text-sm mt-4">
+        No obligation. Takes 30 seconds. 100% free.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+</style>

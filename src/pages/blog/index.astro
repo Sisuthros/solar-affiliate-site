@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const articles = [
+  {
+    title: "Home Solar Starter Kits Under $500 (2025 Guide)",
+    description: "Start harvesting solar without the headache. Compare sub-$500 starter kits for apartments, rentals, and beginners.",
+    slug: "starter-kits",
+    category: "Guides",
+    readTime: "8 min read"
+  },
+  {
+    title: "Top 5 Smart Energy Monitors for Solar (2025)",
+    description: "See your solar + grid flows in one dashboard. Compare setup, app quality, and automation hooks.",
+    slug: "energy-monitors",
+    category: "Reviews",
+    readTime: "6 min read"
+  },
+  {
+    title: "Solar ROI Calculator: A Simple Framework",
+    description: "A plain-English way to estimate payback time. Understand the factors that affect your solar investment.",
+    slug: "solar-roi-calculator",
+    category: "Calculators",
+    readTime: "5 min read"
+  }
+];
+---
+
+<Layout title="Solar Resources & Guides | SolarSavings" description="Expert guides, reviews, and calculators to help you make smart solar decisions.">
+  <section class="py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="section-title mb-4">Solar Resources & Guides</h1>
+        <p class="section-subtitle mx-auto">
+          Expert guides, product reviews, and tools to help you make smart solar decisions.
+        </p>
+      </div>
+
+      <!-- Featured CTA -->
+      <div class="bg-gradient-to-r from-solar-600 to-sky-600 rounded-2xl p-8 md:p-12 text-white mb-16">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-2xl md:text-3xl font-bold mb-4">
+            Not Sure Where to Start?
+          </h2>
+          <p class="text-solar-100 mb-6">
+            Try our free savings calculator. Answer 2 questions and see how much you could save with solar.
+          </p>
+          <a href="/#calculator" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-solar-600 bg-white rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105">
+            Calculate My Savings
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Articles Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {articles.map((article) => (
+          <a href={`/blog/${article.slug}`} class="card group overflow-hidden">
+            <!-- Placeholder Image -->
+            <div class="h-48 bg-gradient-to-br from-solar-100 to-sky-100 flex items-center justify-center">
+              <svg class="w-16 h-16 text-solar-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs font-semibold text-solar-600 bg-solar-50 px-3 py-1 rounded-full">
+                  {article.category}
+                </span>
+                <span class="text-xs text-gray-400">{article.readTime}</span>
+              </div>
+
+              <h2 class="text-xl font-bold text-gray-900 group-hover:text-solar-600 transition-colors mb-3">
+                {article.title}
+              </h2>
+
+              <p class="text-gray-600 text-sm line-clamp-2">
+                {article.description}
+              </p>
+
+              <div class="mt-4 flex items-center text-solar-600 font-medium text-sm">
+                Read More
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

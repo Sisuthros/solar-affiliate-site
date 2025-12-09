@@ -1,56 +1,159 @@
-# Solar & Clean-Energy Affiliate Engine — Starter Package
+# SolarSavings - Lead Generation Platform
 
-This folder contains three ready-to-publish HTML articles for your new **Solar & Clean-Energy** affiliate site. They are the first pieces of content for a WordPress blog or other CMS.
+A high-end solar lead generation platform built with Astro, React, and Tailwind CSS.
 
-## Files
+## Tech Stack
 
-| File | Description |
-|----|----|
-| `home_solar_starter_kits_under_500_2025.html` | Comparison guide for solar starter kits under €500 (2025).|
-| `solar_roi_calculator_2025.html` | Article with an interactive Solar ROI calculator (JavaScript).|
-| `top_5_smart_energy_monitors_for_solar_2025.html` | Review of smart energy monitors for solar integration.|
+- **Framework:** [Astro](https://astro.build) - Ultra-fast static site generation
+- **UI Components:** [React](https://react.dev) - Interactive calculator component
+- **Styling:** [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- **TypeScript:** Full type safety
 
-The HTML files already include headings, meta descriptions, tables, lists, and FAQ schema. They also contain **affiliate link placeholders** like `AFFILIATE_LINK_STARTER_A{{DEFAULT_UTM}}`. Replace these placeholders with your actual affiliate URLs and the `DEFAULT_UTM` string you plan to use for tracking.
+## Features
 
-## How to publish on WordPress
+- **Solar Savings Calculator** - Multi-step wizard that captures leads
+  - Bill amount slider
+  - Zip code input with auto-detect sun hours
+  - "Analyzing" loading animation
+  - Lead capture form
+  - Personalized savings results
 
-1. **Create categories and tags:**
-   - Categories: `Solar Basics`, `Installation Guides`, `Clean Energy Tech`, `Product Reviews`, `Regional Insights`.
-   - Tags: `solar panel kits`, `home battery`, `inverter`, `off-grid`, `energy monitor`, `ROI calculator`.
+- **Conversion-Optimized Landing Page**
+  - Hero section with trust signals
+  - How it works section
+  - Benefits breakdown
+  - Testimonials
+  - Multiple CTAs
 
-2. **Import or paste the HTML:**
-   - Log into your WordPress dashboard.
-   - Go to **Posts → Add New**.
-   - Click on the **Code editor** view (or “Text” tab) and paste the contents of the corresponding HTML file.
-   - Assign the appropriate category and tags.
-   - Add your Yoast/SEO meta description if needed (a meta description is already included in the `<head>` tag).
-   - Publish the post.
+- **Blog/Resources Section**
+  - SEO-optimized article layouts
+  - Starter kits guide
+  - Energy monitors review
+  - ROI calculator explained
 
-3. **Replace affiliate placeholders:**
-   - Find each `AFFILIATE_LINK_*` placeholder in the HTML.
-   - Replace with the correct affiliate URL. For example:
-     ```html
-     <a href="https://amazon.com/dp/B0XYZ…?tag=YOURTAG&utm_source=affiliate&utm_medium=blog">Check current price</a>
-     ```
-   - Ensure your `DEFAULT_UTM` parameters match your analytics setup.
+## Project Structure
 
-4. **Add disclosure block:**
-   - A disclosure is already included at the top of each article. You may customize it as needed to comply with your local affiliate disclosure regulations.
+```
+solar-lead-platform/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── SolarCalculator.jsx    # The money-maker component
+│   ├── layouts/
+│   │   ├── Layout.astro           # Base layout with sticky header
+│   │   └── BlogLayout.astro       # Blog article layout
+│   ├── pages/
+│   │   ├── index.astro            # Landing page
+│   │   └── blog/
+│   │       ├── index.astro        # Blog listing
+│   │       ├── starter-kits.astro
+│   │       ├── energy-monitors.astro
+│   │       └── solar-roi-calculator.astro
+│   └── styles/
+│       └── global.css             # Tailwind + custom styles
+├── astro.config.mjs
+├── tailwind.config.cjs
+├── tsconfig.json
+└── package.json
+```
 
-## Optional: Notion Editorial Queue
+## Getting Started
 
-If you plan to track ideas and drafts in Notion, create a database with fields such as:
+```bash
+# Install dependencies
+npm install
 
-- **Title**, **Slug**, **Keyword**, **Search Intent**, **Outline**, **Status** (Backlog, Draft, Ready, Published), **Primary Affiliate**, **Money Angle**, **Region**, **Product Type**, **Publish URL**, **CTR / Conv**, **Notes**.
+# Start development server
+npm run dev
 
-Use this table to manage your content pipeline. Once you publish an article, update its status to `Published` and record the live URL.
+# Build for production
+npm run build
 
-## Next Steps
+# Preview production build
+npm run preview
+```
 
-- Integrate GA4 and Bitly if you wish to track affiliate clicks.
-- Schedule regular content generation (e.g. 3 posts/day) using an automation tool or by creating a simple script that posts at set times.
-- Consider expanding the site to regional niches (e.g. `Solar in Cyprus` or `Solar in Greece`) and adding video content later.
+## Lead Capture Integration
 
-## Support
+The calculator component logs leads to the console. To integrate with your CRM:
 
-If you have any questions about how to adapt these HTML files or need help with automation, feel free to ask.
+1. Open `src/components/SolarCalculator.jsx`
+2. Find the `handleSubmit` function
+3. Uncomment and configure the webhook URL:
+
+```javascript
+await fetch('https://hooks.zapier.com/hooks/catch/YOUR_ID/YOUR_HOOK/', {
+  method: 'POST',
+  body: JSON.stringify(leadData)
+});
+```
+
+### Lead Data Structure
+
+```json
+{
+  "timestamp": "2025-01-15T10:30:00.000Z",
+  "source": "solar_calculator",
+  "lead": {
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "555-1234",
+    "zipCode": "85001",
+    "monthlyBill": 180
+  },
+  "analysis": {
+    "state": "Arizona",
+    "systemSize": 6,
+    "netCost": 11760,
+    "annualSavings": 1680,
+    "paybackYears": "7.0",
+    "savings25Years": 30240
+  }
+}
+```
+
+## Customization
+
+### Colors
+
+Edit `tailwind.config.cjs` to change the color scheme:
+
+```javascript
+colors: {
+  solar: {
+    500: '#22c55e',  // Primary green
+    600: '#16a34a',
+  },
+  sky: {
+    500: '#0ea5e9',  // Accent blue
+    600: '#0284c7',
+  }
+}
+```
+
+### Calculator Settings
+
+Adjust savings calculations in `SolarCalculator.jsx`:
+
+- `stateSunData`: Sun hours and electricity rates by state
+- `systemCost`: $/watt for installation estimates
+- `federalCredit`: Tax credit percentage
+
+## Deployment
+
+Build the static site:
+
+```bash
+npm run build
+```
+
+Deploy the `dist/` folder to any static host:
+- Vercel
+- Netlify
+- Cloudflare Pages
+- AWS S3 + CloudFront
+
+## License
+
+MIT
