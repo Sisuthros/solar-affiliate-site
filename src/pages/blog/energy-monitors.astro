@@ -1,0 +1,139 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="Top 5 Smart Energy Monitors for Solar Integration (2025)"
+  description="See your solar + grid flows in one dashboard. We compare setup, app quality, and automation hooks."
+  publishDate="2025-01-20"
+>
+  <p>
+    Good decisions need good telemetry. Energy monitors show real-time flows, help tune self-consumption, and validate your solar ROI. Here's what to look for and our top picks for 2025.
+  </p>
+
+  <h2>Quick Picks</h2>
+  <ul>
+    <li><strong>Best Overall:</strong> Whole-home CT-clamp monitor with solar channels + solid app.</li>
+    <li><strong>Best Budget:</strong> Single-circuit smart meter for key loads.</li>
+    <li><strong>Best for Automations:</strong> Open API + Home Assistant integrations.</li>
+  </ul>
+
+  <h2>Comparison Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Solar Channels</th>
+        <th>App Quality</th>
+        <th>Integrations</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monitor A</td>
+        <td>Yes</td>
+        <td>Clean charts</td>
+        <td>Home Assistant / MQTT</td>
+        <td>Alerts on peak loads</td>
+      </tr>
+      <tr>
+        <td>Monitor B</td>
+        <td>Optional</td>
+        <td>Basic</td>
+        <td>IFTTT</td>
+        <td>Low install effort</td>
+      </tr>
+      <tr>
+        <td>Monitor C</td>
+        <td>Yes</td>
+        <td>Advanced</td>
+        <td>REST API</td>
+        <td>Solar vs. grid split</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Why Energy Monitoring Matters</h2>
+  <ul>
+    <li><strong>Quantify self-consumption:</strong> See exactly how much solar you use vs. export. Shift loads to daylight hours for maximum savings.</li>
+    <li><strong>Catch issues early:</strong> Spot inverter problems, panel shading, or degradation before they cost you money.</li>
+    <li><strong>Automate intelligently:</strong> Trigger hot water heating, EV charging, or pool pumps when solar surplus is available.</li>
+    <li><strong>Validate ROI:</strong> Track actual production vs. installer estimates. Hold vendors accountable.</li>
+  </ul>
+
+  <h2>Key Features to Consider</h2>
+
+  <h3>CT Clamp Quality</h3>
+  <p>
+    Current transformers (CT clamps) are the sensors that measure electricity flow. Look for:
+  </p>
+  <ul>
+    <li>Split-core CTs for easy installation (no wire disconnection)</li>
+    <li>Accuracy rating of 1% or better</li>
+    <li>Sufficient amperage rating for your main panel</li>
+  </ul>
+
+  <h3>Solar-Specific Channels</h3>
+  <p>
+    The best monitors have dedicated solar input channels that show:
+  </p>
+  <ul>
+    <li>Real-time solar production</li>
+    <li>Grid import vs. export</li>
+    <li>Self-consumption percentage</li>
+    <li>Historical trends and comparisons</li>
+  </ul>
+
+  <h3>Smart Home Integration</h3>
+  <p>
+    For automation enthusiasts, check compatibility with:
+  </p>
+  <ul>
+    <li><strong>Home Assistant:</strong> The gold standard for local smart home control</li>
+    <li><strong>MQTT:</strong> Lightweight protocol for real-time data streaming</li>
+    <li><strong>REST API:</strong> For custom dashboards and scripts</li>
+    <li><strong>IFTTT/Zapier:</strong> Simple cloud-based automations</li>
+  </ul>
+
+  <h2>Recommended Picks</h2>
+  <ul>
+    <li>
+      <strong>Whole-home monitor</strong> — 2 solar CTs, app with per-circuit insights.
+      <a href="#" class="text-solar-600 hover:underline">Check price</a>
+    </li>
+    <li>
+      <strong>Budget single-circuit</strong> — Start with your biggest load first.
+      <a href="#" class="text-solar-600 hover:underline">See options</a>
+    </li>
+    <li>
+      <strong>Automation-friendly</strong> — Open API + Home Assistant.
+      <a href="#" class="text-solar-600 hover:underline">Compare models</a>
+    </li>
+  </ul>
+
+  <h2>Installation Tips</h2>
+  <ol>
+    <li><strong>Main panel access:</strong> For CT clamps on the mains, you'll likely need an electrician.</li>
+    <li><strong>Wi-Fi strength:</strong> Ensure good signal at your electrical panel location.</li>
+    <li><strong>Labeling:</strong> Document which CT goes to which circuit for accurate readings.</li>
+    <li><strong>Calibration:</strong> Some monitors allow fine-tuning for maximum accuracy.</li>
+  </ol>
+
+  <h2>FAQ</h2>
+
+  <h3>Will I need an electrician?</h3>
+  <p>
+    For main panel CT clamps: usually yes, especially if you need to access the inside of your breaker panel. For smart plugs monitoring individual devices: no electrician needed.
+  </p>
+
+  <h3>How accurate are these monitors?</h3>
+  <p>
+    Quality monitors are typically 1-2% accurate for energy totals. Real-time power readings may vary more but are sufficient for optimization decisions.
+  </p>
+
+  <h3>Can I monitor individual circuits?</h3>
+  <p>
+    Yes, many systems support multiple CT clamps. You can monitor your HVAC, EV charger, hot water heater, and other major loads separately.
+  </p>
+</BlogLayout>

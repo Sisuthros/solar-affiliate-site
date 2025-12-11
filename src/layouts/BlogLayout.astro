@@ -1,0 +1,119 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate?: string;
+  author?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  publishDate = new Date().toISOString().split('T')[0],
+  author = "SolarSavings Team",
+  image
+} = Astro.props;
+---
+
+<Layout title={`${title} | SolarSavings`} description={description}>
+  <article class="py-12 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-sm text-gray-500">
+          <li><a href="/" class="hover:text-solar-600 transition-colors">Home</a></li>
+          <li>/</li>
+          <li><a href="/blog" class="hover:text-solar-600 transition-colors">Resources</a></li>
+          <li>/</li>
+          <li class="text-gray-900 font-medium truncate">{title}</li>
+        </ol>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="mb-12">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+          {title}
+        </h1>
+        <p class="text-xl text-gray-600 mb-6">
+          {description}
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+          <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-solar-100 rounded-full flex items-center justify-center">
+              <span class="text-solar-600 font-semibold text-sm">SS</span>
+            </div>
+            <span>{author}</span>
+          </div>
+          <span class="hidden sm:inline">•</span>
+          <time datetime={publishDate}>
+            {new Date(publishDate).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+        </div>
+      </header>
+
+      <!-- Affiliate Disclosure -->
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8">
+        <p class="text-amber-800 text-sm">
+          <strong>Disclosure:</strong> This article may contain affiliate links. We may earn a commission at no extra cost to you. This helps support our research and testing.
+        </p>
+      </div>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg prose-gray max-w-none
+                  prose-headings:font-bold prose-headings:text-gray-900
+                  prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
+                  prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
+                  prose-p:text-gray-600 prose-p:leading-relaxed
+                  prose-a:text-solar-600 prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-gray-900
+                  prose-ul:my-6 prose-li:text-gray-600
+                  prose-table:border prose-table:border-gray-200
+                  prose-th:bg-gray-50 prose-th:p-4 prose-th:text-left
+                  prose-td:p-4 prose-td:border-t prose-td:border-gray-200">
+        <slot />
+      </div>
+
+      <!-- CTA Box -->
+      <div class="mt-16 bg-gradient-to-br from-solar-50 to-sky-50 rounded-2xl p-8 md:p-12 text-center border border-solar-100">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          Ready to See Your Savings?
+        </h3>
+        <p class="text-gray-600 mb-6 max-w-lg mx-auto">
+          Use our free calculator to get a personalized estimate of how much you could save with solar.
+        </p>
+        <a href="/#calculator" class="btn-primary">
+          Calculate My Savings
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Related Articles -->
+      <div class="mt-16 pt-12 border-t border-gray-200">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">Related Resources</h3>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <a href="/blog/starter-kits" class="card p-6 group">
+            <h4 class="font-semibold text-gray-900 group-hover:text-solar-600 transition-colors mb-2">
+              Home Solar Starter Kits Under $500
+            </h4>
+            <p class="text-gray-500 text-sm">Compare compact kits for apartments, rentals, and beginners.</p>
+          </a>
+          <a href="/blog/energy-monitors" class="card p-6 group">
+            <h4 class="font-semibold text-gray-900 group-hover:text-solar-600 transition-colors mb-2">
+              Top 5 Smart Energy Monitors for Solar
+            </h4>
+            <p class="text-gray-500 text-sm">Track your solar production and optimize self-consumption.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

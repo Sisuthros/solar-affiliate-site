@@ -1,0 +1,138 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import SolarCalculator from '../../components/SolarCalculator.jsx';
+---
+
+<BlogLayout
+  title="Solar ROI Calculator: A Simple Framework (2025)"
+  description="A plain-English way to estimate payback time. Understand the factors that affect your solar investment."
+  publishDate="2025-01-10"
+>
+  <p>
+    Solar pays back through bill reduction, potential feed-in credits, and energy resilience. Below is a framework to understand and estimate your payback. This is educational — verify local incentives and tariffs with a qualified installer.
+  </p>
+
+  <h2>Try Our Interactive Calculator</h2>
+  <p>
+    Get a personalized savings estimate in 30 seconds:
+  </p>
+
+  <div class="not-prose my-8">
+    <div class="bg-gradient-to-br from-solar-50 to-sky-50 rounded-2xl p-8 border border-solar-100">
+      <SolarCalculator client:load />
+    </div>
+  </div>
+
+  <h2>Understanding Solar ROI</h2>
+  <p>
+    Return on investment for solar depends on several key factors:
+  </p>
+
+  <h3>1. Your Current Electric Bill</h3>
+  <p>
+    Higher bills = faster payback. If you're paying $200+/month, solar typically makes strong financial sense. Lower bills can still work but with longer payback periods.
+  </p>
+
+  <h3>2. Local Electricity Rates</h3>
+  <p>
+    States with high electricity costs (California, Massachusetts, Hawaii) see the best returns. Rates of $0.20+/kWh make solar very attractive.
+  </p>
+
+  <h3>3. Sun Exposure</h3>
+  <p>
+    More sun = more production. Arizona gets about 6.5 peak sun hours daily, while Washington averages 3.8. But even cloudier states can have excellent ROI due to higher electricity rates.
+  </p>
+
+  <h3>4. Available Incentives</h3>
+  <ul>
+    <li><strong>Federal ITC:</strong> 30% tax credit through 2032</li>
+    <li><strong>State incentives:</strong> Vary widely — some offer additional rebates or tax credits</li>
+    <li><strong>Net metering:</strong> Get credit for excess power sent to the grid</li>
+    <li><strong>SRECs:</strong> Solar Renewable Energy Credits in some states</li>
+  </ul>
+
+  <h2>ROI Framework</h2>
+  <p>
+    Here's how to think through your potential return:
+  </p>
+
+  <ol>
+    <li>
+      <strong>Estimate annual solar yield:</strong>
+      <p>System size (kW) × Peak sun hours × 365 × 0.8 (efficiency factor)</p>
+    </li>
+    <li>
+      <strong>Calculate annual savings:</strong>
+      <p>kWh produced × Your electric rate × Self-consumption percentage</p>
+    </li>
+    <li>
+      <strong>Factor in export credits:</strong>
+      <p>If you have net metering, add: Exported kWh × Net metering rate</p>
+    </li>
+    <li>
+      <strong>Determine net system cost:</strong>
+      <p>Gross cost - Federal tax credit (30%) - State/local incentives</p>
+    </li>
+    <li>
+      <strong>Calculate simple payback:</strong>
+      <p>Net cost ÷ Annual savings = Years to payback</p>
+    </li>
+  </ol>
+
+  <h2>Real-World Example</h2>
+  <div class="bg-gray-50 rounded-xl p-6 not-prose">
+    <h4 class="font-bold text-gray-900 mb-4">Phoenix, AZ Homeowner</h4>
+    <ul class="space-y-2 text-gray-600">
+      <li>Monthly bill: $180</li>
+      <li>System size: 7kW</li>
+      <li>Gross cost: $19,600</li>
+      <li>Federal tax credit: -$5,880 (30%)</li>
+      <li>Net cost: $13,720</li>
+      <li>Annual production: ~12,000 kWh</li>
+      <li>Annual savings: ~$1,800</li>
+      <li class="font-semibold text-solar-600">Payback: ~7.6 years</li>
+      <li class="font-semibold text-solar-600">25-year savings: $31,000+</li>
+    </ul>
+  </div>
+
+  <h2>Factors That Improve ROI</h2>
+  <ul>
+    <li><strong>Rising utility rates:</strong> Electricity costs have risen ~2-3% annually. Your savings compound over time.</li>
+    <li><strong>High self-consumption:</strong> Using power when you generate it (daytime) maximizes savings.</li>
+    <li><strong>Battery storage:</strong> Store excess for evening use instead of exporting at low rates.</li>
+    <li><strong>EV ownership:</strong> Charge your car with free solar power.</li>
+    <li><strong>Time-of-use rates:</strong> Solar offsets expensive peak-rate electricity.</li>
+  </ul>
+
+  <h2>Stress Test Your Numbers</h2>
+  <p>
+    Before committing, run scenarios:
+  </p>
+  <ul>
+    <li><strong>Conservative:</strong> -20% production (more shading, lower efficiency)</li>
+    <li><strong>Base case:</strong> Expected production from installer estimates</li>
+    <li><strong>Optimistic:</strong> +10% production (ideal conditions)</li>
+  </ul>
+  <p>
+    If the conservative scenario still shows acceptable payback (under 10 years), you have a solid investment.
+  </p>
+
+  <h2>Common Mistakes to Avoid</h2>
+  <ul>
+    <li><strong>Ignoring shading:</strong> A single shaded panel can impact string inverter systems significantly</li>
+    <li><strong>Oversizing without storage:</strong> Exporting power often pays less than consuming it</li>
+    <li><strong>Forgetting maintenance:</strong> Budget for occasional cleaning and inverter replacement (~year 15)</li>
+    <li><strong>Not shopping around:</strong> Get 3+ quotes. Prices vary 20-40% between installers</li>
+  </ul>
+
+  <h2>Next Steps</h2>
+  <p>
+    Ready to get serious about solar? Here's your action plan:
+  </p>
+  <ol>
+    <li>Use our calculator above to estimate your savings</li>
+    <li>Enter your info to get matched with verified local installers</li>
+    <li>Compare at least 3 quotes before deciding</li>
+    <li>Ask about financing options — $0-down loans often make sense</li>
+  </ol>
+</BlogLayout>

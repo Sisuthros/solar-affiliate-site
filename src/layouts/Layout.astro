@@ -1,0 +1,140 @@
+---
+import ExitIntentPopup from '../components/ExitIntentPopup.jsx';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Calculate your solar savings and get connected with verified installers in your area." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+
+    <!-- Structured Data -->
+    <SchemaOrg type="Organization" />
+    <SchemaOrg type="WebSite" />
+
+    <!-- Analytics -->
+    <Analytics />
+  </head>
+  <body class="min-h-screen">
+    <!-- Sticky Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-2 group">
+            <div class="w-10 h-10 bg-gradient-to-br from-solar-500 to-solar-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-glow transition-shadow">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-gray-900 hidden sm:block">SolarSavings</span>
+          </a>
+
+          <!-- Desktop Nav -->
+          <div class="hidden md:flex items-center gap-8">
+            <a href="/#calculator" class="text-gray-600 hover:text-solar-600 font-medium transition-colors">Calculator</a>
+            <a href="/#how-it-works" class="text-gray-600 hover:text-solar-600 font-medium transition-colors">How It Works</a>
+            <a href="/blog" class="text-gray-600 hover:text-solar-600 font-medium transition-colors">Resources</a>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="/#calculator" class="btn-primary text-sm md:text-base px-4 md:px-6 py-2 md:py-3">
+            Get Free Quote
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16 md:pt-20">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Brand -->
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-10 h-10 bg-gradient-to-br from-solar-500 to-solar-600 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <span class="text-xl font-bold text-white">SolarSavings</span>
+            </div>
+            <p class="text-gray-400 max-w-md">
+              Connecting homeowners with verified solar installers. Get personalized savings estimates and take control of your energy future.
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div>
+            <h4 class="font-semibold text-white mb-4">Resources</h4>
+            <ul class="space-y-2">
+              <li><a href="/blog" class="hover:text-solar-400 transition-colors">Solar Guides</a></li>
+              <li><a href="/blog/solar-roi-calculator" class="hover:text-solar-400 transition-colors">ROI Calculator</a></li>
+              <li><a href="/blog/starter-kits" class="hover:text-solar-400 transition-colors">Starter Kits</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div>
+            <h4 class="font-semibold text-white mb-4">Legal</h4>
+            <ul class="space-y-2">
+              <li><a href="/privacy" class="hover:text-solar-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" class="hover:text-solar-400 transition-colors">Terms of Service</a></li>
+              <li><a href="/disclosure" class="hover:text-solar-400 transition-colors">Affiliate Disclosure</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-gray-500 text-sm">
+            &copy; {new Date().getFullYear()} SolarSavings. All rights reserved.
+          </p>
+          <p class="text-gray-500 text-sm">
+            Results are estimates only. Consult a professional installer for accurate quotes.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Exit Intent Popup -->
+    <ExitIntentPopup client:load />
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

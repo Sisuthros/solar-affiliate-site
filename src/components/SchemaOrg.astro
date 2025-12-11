@@ -1,0 +1,91 @@
+---
+interface Props {
+  type?: 'Organization' | 'WebSite' | 'FAQPage' | 'Article' | 'LocalBusiness';
+  data?: Record<string, unknown>;
+}
+
+const { type = 'Organization', data = {} } = Astro.props;
+
+// Default Organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SolarSavings",
+  "description": "Connect with verified solar installers and calculate your solar savings.",
+  "url": "https://solarsavings.com",
+  "logo": "https://solarsavings.com/favicon.svg",
+  "sameAs": [],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  }
+};
+
+// WebSite schema with search action
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SolarSavings",
+  "url": "https://solarsavings.com",
+  "description": "Calculate your solar savings and get connected with verified installers.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://solarsavings.com/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+// LocalBusiness schema for local SEO
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "SolarSavings",
+  "@id": "https://solarsavings.com",
+  "url": "https://solarsavings.com",
+  "description": "Solar savings calculator and installer matching service.",
+  "priceRange": "Free quotes",
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "serviceType": "Solar Installation Lead Generation"
+};
+
+// Select the appropriate schema
+let schema;
+switch (type) {
+  case 'WebSite':
+    schema = { ...webSiteSchema, ...data };
+    break;
+  case 'LocalBusiness':
+    schema = { ...localBusinessSchema, ...data };
+    break;
+  case 'FAQPage':
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      ...data
+    };
+    break;
+  case 'Article':
+    schema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "publisher": {
+        "@type": "Organization",
+        "name": "SolarSavings",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solarsavings.com/favicon.svg"
+        }
+      },
+      ...data
+    };
+    break;
+  default:
+    schema = { ...organizationSchema, ...data };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
