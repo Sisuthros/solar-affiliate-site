@@ -1,0 +1,14 @@
+# robots.txt for SolarSavings
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://solarsavings.com/sitemap-index.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
+
+# Disallow admin/private paths (add as needed)
+# Disallow: /admin/
+# Disallow: /api/

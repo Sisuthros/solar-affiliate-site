@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SolarCalculator from '../components/SolarCalculator.jsx';
+import TrustBadges from '../components/TrustBadges.astro';
 ---
 
 <Layout title="SolarSavings - Stop Renting Your Electricity. Own It.">
@@ -120,6 +121,11 @@ import SolarCalculator from '../components/SolarCalculator.jsx';
 
       <div class="card p-8 md:p-12 max-w-2xl mx-auto">
         <SolarCalculator client:load />
+      </div>
+
+      <!-- Trust Badges below calculator -->
+      <div class="mt-12 max-w-3xl mx-auto">
+        <TrustBadges variant="full" />
       </div>
     </div>
   </section>

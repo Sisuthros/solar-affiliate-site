@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Thank You! | SolarSavings" description="Your solar quote request has been received. A solar expert will contact you shortly.">
+  <div class="min-h-[70vh] flex items-center justify-center py-20">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <!-- Success Icon -->
+      <div class="mb-8">
+        <div class="w-24 h-24 bg-solar-100 rounded-full flex items-center justify-center mx-auto animate-bounce-once">
+          <svg class="w-12 h-12 text-solar-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        You're All Set!
+      </h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Your personalized solar quote request has been received.
+      </p>
+
+      <!-- What's Next Card -->
+      <div class="bg-gradient-to-br from-solar-50 to-sky-50 rounded-2xl p-8 mb-8 text-left border border-solar-100">
+        <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-solar-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          What Happens Next?
+        </h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 bg-solar-500 text-white rounded-full flex items-center justify-center font-bold text-sm">1</span>
+            <div>
+              <p class="font-semibold text-gray-900">Expert Review (Within 24 hours)</p>
+              <p class="text-gray-600 text-sm">A solar specialist will review your information and prepare a customized quote.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 bg-solar-500 text-white rounded-full flex items-center justify-center font-bold text-sm">2</span>
+            <div>
+              <p class="font-semibold text-gray-900">Personalized Consultation</p>
+              <p class="text-gray-600 text-sm">You'll receive a call to discuss your specific needs and answer any questions.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 w-8 h-8 bg-solar-500 text-white rounded-full flex items-center justify-center font-bold text-sm">3</span>
+            <div>
+              <p class="font-semibold text-gray-900">Compare & Decide</p>
+              <p class="text-gray-600 text-sm">Review up to 3 quotes from verified installers. No pressure, no obligation.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Urgency Box -->
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-6 mb-8">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div class="text-left">
+            <p class="font-semibold text-amber-900">Don't miss the 30% Federal Tax Credit!</p>
+            <p class="text-amber-800 text-sm">The Investment Tax Credit (ITC) is available through 2032, but acting sooner means saving sooner.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a href="/" class="btn-primary">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Back to Home
+        </a>
+        <a href="/blog" class="btn-secondary">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          Read Solar Guides
+        </a>
+      </div>
+
+      <!-- Trust Signals -->
+      <div class="flex flex-wrap justify-center items-center gap-6 text-gray-400 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+          <span>Verified Installers</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <span>No Obligation</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+          </svg>
+          <span>Your Data is Secure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @keyframes bounce-once {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  .animate-bounce-once {
+    animation: bounce-once 0.6s ease-out;
+  }
+</style>

@@ -140,6 +140,13 @@ export default function SolarCalculator() {
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsSubmitting(false);
     setIsSubmitted(true);
+
+    // Redirect to thank you page after brief delay
+    setTimeout(() => {
+      if (typeof window !== 'undefined') {
+        window.location.href = '/thank-you';
+      }
+    }, 2000);
   };
 
   const formatCurrency = (num) => {

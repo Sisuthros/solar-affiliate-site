@@ -1,4 +1,8 @@
 ---
+import ExitIntentPopup from '../components/ExitIntentPopup.jsx';
+import SchemaOrg from '../components/SchemaOrg.astro';
+import Analytics from '../components/Analytics.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -29,6 +33,13 @@ const { title, description = "Calculate your solar savings and get connected wit
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <title>{title}</title>
+
+    <!-- Structured Data -->
+    <SchemaOrg type="Organization" />
+    <SchemaOrg type="WebSite" />
+
+    <!-- Analytics -->
+    <Analytics />
   </head>
   <body class="min-h-screen">
     <!-- Sticky Header -->
@@ -118,6 +129,9 @@ const { title, description = "Calculate your solar savings and get connected wit
         </div>
       </div>
     </footer>
+
+    <!-- Exit Intent Popup -->
+    <ExitIntentPopup client:load />
   </body>
 </html>
 
